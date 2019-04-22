@@ -31,12 +31,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.AutoStartCheckBox = new System.Windows.Forms.CheckBox();
             this.sListView = new System.Windows.Forms.DataGridView();
-            this.colIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deletebtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.sIP = new System.Windows.Forms.TextBox();
             this.sName = new System.Windows.Forms.TextBox();
             this.sAdd = new System.Windows.Forms.Button();
+            this.colIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.deletebtn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.sListView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,15 +70,41 @@
             this.sListView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colIP,
             this.colName,
+            this.edit,
             this.deletebtn});
             this.sListView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.sListView.Location = new System.Drawing.Point(16, 83);
             this.sListView.MultiSelect = false;
             this.sListView.Name = "sListView";
             this.sListView.ReadOnly = true;
-            this.sListView.Size = new System.Drawing.Size(305, 183);
+            this.sListView.Size = new System.Drawing.Size(380, 183);
             this.sListView.TabIndex = 2;
             this.sListView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sListView_CellContentClick);
+            // 
+            // sIP
+            // 
+            this.sIP.Location = new System.Drawing.Point(17, 281);
+            this.sIP.Name = "sIP";
+            this.sIP.Size = new System.Drawing.Size(96, 20);
+            this.sIP.TabIndex = 3;
+            this.sIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.sIP_KeyPress);
+            // 
+            // sName
+            // 
+            this.sName.Location = new System.Drawing.Point(119, 281);
+            this.sName.Name = "sName";
+            this.sName.Size = new System.Drawing.Size(163, 20);
+            this.sName.TabIndex = 4;
+            // 
+            // sAdd
+            // 
+            this.sAdd.Location = new System.Drawing.Point(288, 279);
+            this.sAdd.Name = "sAdd";
+            this.sAdd.Size = new System.Drawing.Size(108, 23);
+            this.sAdd.TabIndex = 5;
+            this.sAdd.Text = "Добавить";
+            this.sAdd.UseVisualStyleBackColor = true;
+            this.sAdd.Click += new System.EventHandler(this.sAdd_Click);
             // 
             // colIP
             // 
@@ -91,6 +118,15 @@
             this.colName.Name = "colName";
             this.colName.ReadOnly = true;
             // 
+            // edit
+            // 
+            this.edit.HeaderText = "Изменить";
+            this.edit.Name = "edit";
+            this.edit.ReadOnly = true;
+            this.edit.Text = "Изменить";
+            this.edit.UseColumnTextForButtonValue = true;
+            this.edit.Width = 70;
+            // 
             // deletebtn
             // 
             this.deletebtn.HeaderText = "Удалить";
@@ -100,35 +136,11 @@
             this.deletebtn.UseColumnTextForButtonValue = true;
             this.deletebtn.Width = 60;
             // 
-            // sIP
-            // 
-            this.sIP.Location = new System.Drawing.Point(16, 282);
-            this.sIP.Name = "sIP";
-            this.sIP.Size = new System.Drawing.Size(96, 20);
-            this.sIP.TabIndex = 3;
-            // 
-            // sName
-            // 
-            this.sName.Location = new System.Drawing.Point(119, 281);
-            this.sName.Name = "sName";
-            this.sName.Size = new System.Drawing.Size(100, 20);
-            this.sName.TabIndex = 4;
-            // 
-            // sAdd
-            // 
-            this.sAdd.Location = new System.Drawing.Point(225, 278);
-            this.sAdd.Name = "sAdd";
-            this.sAdd.Size = new System.Drawing.Size(96, 23);
-            this.sAdd.TabIndex = 5;
-            this.sAdd.Text = "Добавить";
-            this.sAdd.UseVisualStyleBackColor = true;
-            this.sAdd.Click += new System.EventHandler(this.sAdd_Click);
-            // 
             // ProgramSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 318);
+            this.ClientSize = new System.Drawing.Size(411, 318);
             this.Controls.Add(this.sAdd);
             this.Controls.Add(this.sName);
             this.Controls.Add(this.sIP);
@@ -156,6 +168,7 @@
         private System.Windows.Forms.Button sAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIP;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+        private System.Windows.Forms.DataGridViewButtonColumn edit;
         private System.Windows.Forms.DataGridViewButtonColumn deletebtn;
     }
 }

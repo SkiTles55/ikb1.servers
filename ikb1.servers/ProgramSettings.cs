@@ -63,12 +63,22 @@ namespace ikb1.servers
         private void sListView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            if (senderGrid.Columns[e.ColumnIndex].Index == 3 && e.RowIndex >= 0)
             {
                 var ip = sListView.Rows[e.RowIndex].Cells[0].Value.ToString();
                 Program.Servers.Remove(IPAddress.Parse(ip));
-                sListView.Rows.RemoveAt(e.RowIndex);                
+                sListView.Rows.RemoveAt(e.RowIndex);               
             }
+            if (senderGrid.Columns[e.ColumnIndex].Index == 2 && e.RowIndex >= 0)
+            {
+
+            }
+        }
+
+        private void sIP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ',') e.KeyChar = '.';
+            if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == '.') && !char.IsControl(e.KeyChar)) e.Handled = true;
         }
     }
 }
