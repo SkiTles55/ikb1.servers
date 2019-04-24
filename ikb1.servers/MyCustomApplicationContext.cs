@@ -33,5 +33,5 @@ public class MyCustomApplicationContext : ApplicationContext
         ps.Show();
     }
 
-    public void ShowMessage(string text) => trayIcon.ShowBalloonTip(4000, "Информация", text, ToolTipIcon.Warning);
+    public void ShowMessage(string text, int time) => trayIcon.ShowBalloonTip(time, "Информация", text, ToolTipIcon.Warning);
 }

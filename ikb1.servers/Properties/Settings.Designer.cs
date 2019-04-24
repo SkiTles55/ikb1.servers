@@ -46,5 +46,29 @@ namespace ikb1.servers.Properties {
                 this["serversList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int tint {
+            get {
+                return ((int)(this["tint"]));
+            }
+            set {
+                this["tint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int pint {
+            get {
+                return ((int)(this["pint"]));
+            }
+            set {
+                this["pint"] = value;
+            }
+        }
     }
 }

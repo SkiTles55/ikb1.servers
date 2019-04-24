@@ -16,7 +16,7 @@ namespace ikb1.servers
         ///        
 
         public static Dictionary<IPAddress, string> Servers { get; set; }
-        static System.Timers.Timer aTimer;
+        public static System.Timers.Timer aTimer;
         public static MyCustomApplicationContext icon;
 
         [STAThread]
@@ -32,9 +32,9 @@ namespace ikb1.servers
                     if (!Servers.ContainsKey(IPAddress.Parse(s.Key))) Servers.Add(IPAddress.Parse(s.Key), s.Value);
             }
             icon = new MyCustomApplicationContext();
-            aTimer = new System.Timers.Timer(40000);
+            aTimer = new System.Timers.Timer(Settings.Default.tint * 60000);
             aTimer.Elapsed += CheckServers;
-            aTimer.Interval = 40000;
+            //aTimer.Interval = Settings.Default.tint;
             aTimer.Enabled = true;
             Application.Run(icon);
         }
@@ -52,7 +52,7 @@ namespace ikb1.servers
                     output += "Сервер " + pc.Value + " (" + pc.Key.ToString() + ") недоступен";
                 }
             }
-            if (output != String.Empty) icon.ShowMessage(output);
+            if (output != String.Empty) icon.ShowMessage(output, Settings.Default.pint * 1000);
         }
     }
 }

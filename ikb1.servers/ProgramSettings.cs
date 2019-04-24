@@ -71,7 +71,7 @@ namespace ikb1.servers
             }
             if (senderGrid.Columns[e.ColumnIndex].Index == 2 && e.RowIndex >= 0)
             {
-
+                //edit code here
             }
         }
 
@@ -79,6 +79,19 @@ namespace ikb1.servers
         {
             if (e.KeyChar == ',') e.KeyChar = '.';
             if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == '.') && !char.IsControl(e.KeyChar)) e.Handled = true;
+        }
+
+        private void timerInt_ValueChanged(object sender, EventArgs e)
+        {
+            Settings.Default.tint = (int)timerInt.Value;
+            Settings.Default.Save();
+            Program.aTimer.Interval = Settings.Default.tint * 60000;
+        }
+
+        private void popupInt_ValueChanged(object sender, EventArgs e)
+        {
+            Settings.Default.pint = (int)popupInt.Value;
+            Settings.Default.Save();
         }
     }
 }
