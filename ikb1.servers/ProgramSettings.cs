@@ -10,6 +10,8 @@ namespace ikb1.servers
     public partial class ProgramSettings : Form
     {
         RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        int foredit = -1;
+        IPAddress foreditGrid = null;
 
         public ProgramSettings()
         {
@@ -35,23 +37,50 @@ namespace ikb1.servers
 
         private void sAdd_Click(object sender, EventArgs e)
         {
-            IPAddress ip;
-            try
+            if (sAdd.Text == "Добавить")
             {
-                ip = IPAddress.Parse(sIP.Text);
-                if (sIP.Text != String.Empty && sName.Text != String.Empty && !Program.Servers.ContainsKey(ip))
+                IPAddress ip;
+                try
                 {
-                    Program.Servers.Add(ip, sName.Text);
-                    sListView.Rows.Add(sIP.Text, sName.Text);
-                    sIP.Text = String.Empty;
-                    sName.Text = String.Empty;
+                    ip = IPAddress.Parse(sIP.Text);
+                    if (sIP.Text != String.Empty && sName.Text != String.Empty && !Program.Servers.ContainsKey(ip))
+                    {
+                        Program.Servers.Add(ip, sName.Text);
+                        sListView.Rows.Add(sIP.Text, sName.Text);
+                        sIP.Text = String.Empty;
+                        sName.Text = String.Empty;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Такой IP адрес уже добавлен!");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Такой IP адрес уже добавлен!");
-                }
+                catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка"); }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка"); }            
+            else if (sAdd.Text == "Изменить" && foredit != -1)
+            {
+                IPAddress ip;
+                try
+                {
+                    ip = IPAddress.Parse(sIP.Text);
+                    if (sIP.Text != String.Empty && sName.Text != String.Empty)
+                    {
+                        sListView.Rows[foredit].Cells[0].Value = sIP.Text;
+                        sListView.Rows[foredit].Cells[1].Value = sName.Text;
+                        if (Program.Servers.ContainsKey(ip))
+                            Program.Servers[ip] = sName.Text;
+                        else
+                        {
+                            Program.Servers.Add(ip, sName.Text);
+                            if (foreditGrid != null) Program.Servers.Remove(foreditGrid);
+                        }
+                        foredit = -1;
+                        foreditGrid = null;
+                        sAdd.Text = "Добавить";
+                    }
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка"); }
+            }
         }
 
         private void ProgramSettings_Deactivate(object sender, EventArgs e)
@@ -65,13 +94,21 @@ namespace ikb1.servers
             var senderGrid = (DataGridView)sender;
             if (senderGrid.Columns[e.ColumnIndex].Index == 3 && e.RowIndex >= 0)
             {
-                var ip = sListView.Rows[e.RowIndex].Cells[0].Value.ToString();
-                Program.Servers.Remove(IPAddress.Parse(ip));
-                sListView.Rows.RemoveAt(e.RowIndex);               
+                DialogResult dialogResult = MessageBox.Show($"Вы действительно хотите удалить {sListView.Rows[e.RowIndex].Cells[1].Value.ToString()}?", "Удаление", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var ip = sListView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    Program.Servers.Remove(IPAddress.Parse(ip));
+                    sListView.Rows.RemoveAt(e.RowIndex);
+                }                                   
             }
             if (senderGrid.Columns[e.ColumnIndex].Index == 2 && e.RowIndex >= 0)
             {
-                //edit code here
+                sAdd.Text = "Изменить";
+                sIP.Text = sListView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                sName.Text = sListView.Rows[e.RowIndex].Cells[1].Value.ToString();
+                foredit = e.RowIndex;
+                foreditGrid = IPAddress.Parse(sIP.Text);
             }
         }
 

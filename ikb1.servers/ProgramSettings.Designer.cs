@@ -31,10 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.AutoStartCheckBox = new System.Windows.Forms.CheckBox();
             this.sListView = new System.Windows.Forms.DataGridView();
-            this.colIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.deletebtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.sIP = new System.Windows.Forms.TextBox();
             this.sName = new System.Windows.Forms.TextBox();
             this.sAdd = new System.Windows.Forms.Button();
@@ -42,6 +38,10 @@
             this.timerInt = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.popupInt = new System.Windows.Forms.NumericUpDown();
+            this.colIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.deletebtn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.sListView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timerInt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupInt)).BeginInit();
@@ -86,39 +86,10 @@
             this.sListView.Name = "sListView";
             this.sListView.ReadOnly = true;
             this.sListView.RowHeadersVisible = false;
+            this.sListView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.sListView.Size = new System.Drawing.Size(380, 183);
             this.sListView.TabIndex = 2;
             this.sListView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sListView_CellContentClick);
-            // 
-            // colIP
-            // 
-            this.colIP.HeaderText = "IP машины";
-            this.colIP.Name = "colIP";
-            this.colIP.ReadOnly = true;
-            // 
-            // colName
-            // 
-            this.colName.HeaderText = "Имя машины";
-            this.colName.Name = "colName";
-            this.colName.ReadOnly = true;
-            // 
-            // edit
-            // 
-            this.edit.HeaderText = "Изменить";
-            this.edit.Name = "edit";
-            this.edit.ReadOnly = true;
-            this.edit.Text = "Изменить";
-            this.edit.UseColumnTextForButtonValue = true;
-            this.edit.Width = 70;
-            // 
-            // deletebtn
-            // 
-            this.deletebtn.HeaderText = "Удалить";
-            this.deletebtn.Name = "deletebtn";
-            this.deletebtn.ReadOnly = true;
-            this.deletebtn.Text = "X";
-            this.deletebtn.UseColumnTextForButtonValue = true;
-            this.deletebtn.Width = 60;
             // 
             // sIP
             // 
@@ -188,6 +159,38 @@
             this.popupInt.Value = global::ikb1.servers.Properties.Settings.Default.pint;
             this.popupInt.ValueChanged += new System.EventHandler(this.popupInt_ValueChanged);
             // 
+            // colIP
+            // 
+            this.colIP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colIP.HeaderText = "IP машины";
+            this.colIP.Name = "colIP";
+            this.colIP.ReadOnly = true;
+            // 
+            // colName
+            // 
+            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colName.HeaderText = "Имя машины";
+            this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
+            // 
+            // edit
+            // 
+            this.edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.edit.HeaderText = "Изменить";
+            this.edit.Name = "edit";
+            this.edit.ReadOnly = true;
+            this.edit.Text = "Изменить";
+            this.edit.UseColumnTextForButtonValue = true;
+            // 
+            // deletebtn
+            // 
+            this.deletebtn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.deletebtn.HeaderText = "Удалить";
+            this.deletebtn.Name = "deletebtn";
+            this.deletebtn.ReadOnly = true;
+            this.deletebtn.Text = "X";
+            this.deletebtn.UseColumnTextForButtonValue = true;
+            // 
             // ProgramSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,6 +206,7 @@
             this.Controls.Add(this.sListView);
             this.Controls.Add(this.AutoStartCheckBox);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "ProgramSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -224,13 +228,13 @@
         private System.Windows.Forms.TextBox sIP;
         private System.Windows.Forms.TextBox sName;
         private System.Windows.Forms.Button sAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colIP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
-        private System.Windows.Forms.DataGridViewButtonColumn edit;
-        private System.Windows.Forms.DataGridViewButtonColumn deletebtn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown timerInt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown popupInt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+        private System.Windows.Forms.DataGridViewButtonColumn edit;
+        private System.Windows.Forms.DataGridViewButtonColumn deletebtn;
     }
 }
